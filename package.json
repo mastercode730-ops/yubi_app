@@ -20,6 +20,7 @@
     "expo-splash-screen": "~58.0.11",
     "expo-status-bar": "~58.0.4",
     "expo-system-ui": "~58.0.6",
+    "expo-updates": "~58.0.18",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-native": "0.88.0",
@@ -35,7 +36,9 @@
     "lint": "expo lint",
     "build:apk": "npx eas-cli@latest build -p android --profile preview",
     "build:android": "npx eas-cli@latest build -p android --profile production",
-    "build:ios": "npx eas-cli@latest build -p ios --profile production"
+    "build:ios": "npx eas-cli@latest build -p ios --profile production",
+    "update:apk": "npx eas-cli@latest update --channel preview --environment preview --message",
+    "update:store": "npx eas-cli@latest update --channel production --environment production --message"
   },
   "private": true,
   "devDependencies": {

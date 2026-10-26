@@ -29,6 +29,20 @@ To submit to the stores: `npx eas-cli@latest submit -p android` or `-p ios`.
 
 Before each store release, raise `version` in `app.json`, plus `android.versionCode` and `ios.buildNumber` (`eas.json` uses `appVersionSource: local`, so the numbers in `app.json` are what gets built).
 
+## Ship fixes without a new build (EAS Update)
+
+Installed apps download JavaScript updates (screens, logic, text, styling) by themselves. An update is fetched in the background when the app opens and applied the next time the app is opened.
+
+```bash
+npm run update:apk -- "Fixed hisab totals"     # apps installed from the APK (preview channel)
+npm run update:store -- "Fixed hisab totals"   # Play Store / App Store builds (production channel)
+```
+
+An update only reaches builds with the same `version` in `app.json` (`runtimeVersion` policy `appVersion`). So:
+
+- **JS-only change** → keep `version` as it is and run an update command.
+- **Native change** (new library with native code, icon, name, splash, permissions, Expo SDK upgrade) → raise `version` (and `versionCode` / `buildNumber`) and make a new build. Older installs keep their last update until the new build is installed.
+
 ## Configuration
 
 | What | Where |
